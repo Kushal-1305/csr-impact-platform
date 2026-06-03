@@ -1,113 +1,79 @@
-# VolunteerTrack — Employee Volunteering & CSR Impact Platform
+# CSR Impact Platform — Employee Volunteering & Social Impact Tracker
 
-A full-stack web application for managing corporate volunteering programs, tracking social impact,
-and generating ESG metrics. Built as a full-stack portfolio project.
+A web application that helps companies manage their Corporate Social Responsibility (CSR) programs — making it easy for employees to volunteer, and for managers to track the real-world impact their organization is creating.
 
-## Features
+---
 
-**For Employees:**
-- Browse upcoming volunteering events filtered by cause
-- Register or cancel registrations in one click
-- View personal registration history
+## The Problem It Solves
 
-**For CSR Admins:**
-- Create, edit, and delete volunteering events
-- View registrations per event with volunteer profiles
-- Full control over event capacity and scheduling
+Most companies have CSR goals — getting employees to volunteer, support causes, and contribute to ESG (Environmental, Social, Governance) targets. But managing this is messy: events are announced over email, sign-ups are tracked in spreadsheets, and nobody really knows the total impact being made.
 
-**Impact Dashboard:**
-- Key metrics: total volunteers, hours contributed, events, registrations
-- Bar chart: monthly volunteering hours trend
-- Pie chart: volunteer distribution across causes
-- Top events leaderboard
+This platform fixes that by giving companies a single place to organize volunteering, track participation, and visualize their social impact — all in real time.
 
-## Tech Stack
+---
 
-| Layer     | Technology                        |
-|-----------|-----------------------------------|
-| Frontend  | React 18, Vite, Tailwind CSS      |
-| Charts    | Recharts                          |
-| Backend   | Node.js, Express                  |
-| Database  | SQLite (better-sqlite3)           |
-| Auth      | JWT (jsonwebtoken) + bcrypt       |
-| HTTP      | Axios                             |
+## Who Uses It
 
-## Project Structure
+### Employees
+- Log in and see all upcoming volunteering events at a glance
+- Filter events by cause — Environment, Education, Health, Food, and more
+- Register for events with one click, and cancel if plans change
+- See how many spots are left on each event before signing up
 
-```
-volunteer-tracker/
-├── backend/
-│   ├── server.js          # Express app entry point
-│   ├── database.js        # SQLite setup & table creation
-│   ├── seed.js            # Demo data seeder
-│   ├── routes/
-│   │   ├── auth.js        # Register, login, /me
-│   │   ├── events.js      # CRUD for events
-│   │   ├── registrations.js  # Sign up / cancel
-│   │   └── impact.js      # Dashboard statistics
-│   └── middleware/
-│       └── auth.js        # JWT verification middleware
-└── frontend/
-    └── src/
-        ├── api/axios.js        # Axios instance with auth header
-        ├── context/AuthContext.jsx  # Global auth state
-        ├── pages/
-        │   ├── Login.jsx
-        │   ├── Register.jsx
-        │   ├── Events.jsx      # Employee event browser
-        │   ├── AdminPanel.jsx  # Admin event management
-        │   └── Dashboard.jsx   # Impact charts
-        └── components/
-            └── Navbar.jsx
-```
+### CSR Managers (Admins)
+- Create and publish new volunteering events with all details (date, location, cause, capacity)
+- Edit or remove events at any time
+- See exactly who has signed up for each event
+- Monitor how participation is trending across the organization
 
-## Getting Started
+---
 
-### Prerequisites
-- Node.js v20+ ([nodejs.org](https://nodejs.org))
+## The Impact Dashboard
 
-### 1. Backend Setup
+The most powerful part of the platform. It answers the question: *"What difference are we actually making?"*
+
+- **Total volunteers** engaged across all events
+- **Total hours** contributed by employees
+- **Monthly trend chart** showing how volunteering activity grows over time
+- **Cause breakdown chart** showing which areas (environment, education, etc.) get the most engagement
+- **Top events leaderboard** — the most popular volunteering drives
+
+This is the kind of data that goes into ESG reports submitted to investors and boards.
+
+---
+
+## How to Run It Locally
+
+You'll need [Node.js](https://nodejs.org) installed.
+
+**Start the backend** (open a terminal in the `backend/` folder):
 ```bash
-cd backend
 npm install
-node seed.js        # Populate demo data
-node server.js      # Start server on http://localhost:5000
+node seed.js
+node server.js
 ```
 
-### 2. Frontend Setup (new terminal)
+**Start the frontend** (open another terminal in the `frontend/` folder):
 ```bash
-cd frontend
 npm install
-npm run dev         # Start app on http://localhost:5173
+npm run dev
 ```
 
-### 3. Open the app
-Go to [http://localhost:5173](http://localhost:5173)
+Then open **http://localhost:5173** in your browser.
 
-## Demo Accounts
+**Demo login credentials:**
 
-| Role     | Email                   | Password   |
-|----------|-------------------------|------------|
-| Admin    | admin@nexavolt.com      | admin123   |
-| Employee | alice@nexavolt.com      | pass123    |
-| Employee | bob@zyntara.com         | pass123    |
+| Role | Email | Password |
+|------|-------|----------|
+| Admin (CSR Manager) | admin@nexavolt.com | admin123 |
+| Employee | alice@nexavolt.com | pass123 |
+| Employee | bob@zyntara.com | pass123 |
 
-## API Endpoints
+---
 
-| Method | Endpoint                          | Description                  | Auth     |
-|--------|-----------------------------------|------------------------------|----------|
-| POST   | /api/auth/register                | Create account               | Public   |
-| POST   | /api/auth/login                   | Login, receive token         | Public   |
-| GET    | /api/auth/me                      | Get current user             | Required |
-| GET    | /api/events                       | List all events              | Required |
-| POST   | /api/events                       | Create event                 | Admin    |
-| PUT    | /api/events/:id                   | Update event                 | Admin    |
-| DELETE | /api/events/:id                   | Delete event                 | Admin    |
-| POST   | /api/registrations/:eventId       | Register for event           | Required |
-| DELETE | /api/registrations/:eventId       | Cancel registration          | Required |
-| GET    | /api/registrations/my             | My registrations             | Required |
-| GET    | /api/registrations/event/:id      | Volunteers for event         | Admin    |
-| GET    | /api/impact/summary               | Key stats                    | Required |
-| GET    | /api/impact/by-cause              | Breakdown by cause           | Required |
-| GET    | /api/impact/monthly               | Monthly hours trend          | Required |
-| GET    | /api/impact/top-events            | Top 5 events                 | Required |
+## Built With
+
+- **Frontend:** React, Tailwind CSS, Recharts (for charts)
+- **Backend:** Node.js, Express
+- **Database:** SQLite
+- **Authentication:** JWT-based login with encrypted passwords
